@@ -1,0 +1,27 @@
+<ion-view view-title="Settings 设置">
+  <ion-content class="padding">
+<div class="list">
+  <label class="item item-input item-stacked-label">
+    <span class="input-label">Invite Code 邀请码</span>
+    <input type="text" placeholder="GAV6DSX" ng-model="invitecode" ng-trim="true"/>
+  </label>  
+  <label class="item item-input item-stacked-label">
+    <span class="input-label">Baby's Birthday 宝宝生日</span>
+    <input type="date" placeholder="2016-8-18" ng-model="birthday" ng-trim="true"/>
+  </label>
+  <label class="item item-input item-stacked-label">
+    <span class="input-label">Your Email 您的电邮地址</span>
+    <input type="email" placeholder="mingzi@sina.com" ng-model="email" ng-trim="true"/>
+  </label>  
+</div>
+<label>
+    <span ng-class="msgClass" ng-bind="message"></span>
+    <input type-"text" ng-model="msgClass" ng-show="false" /> 
+  </label>
+    <button class="button button-block button-positive icon-left ion-ios-checkmark" ng-click="save(email, birthday, invitecode)">Save 保存</button>
+<a class="button button-block button-clear button-positive" href="#/privacy">Privacy Agreement 隐私授权声明</a>
+<!-- <button class="button button-block button-clear button-positive" ng-click="openModal()">
+  隐私授权声明
+</button> -->
+  </ion-content>
+</ion-view>

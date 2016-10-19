@@ -1,0 +1,26 @@
+<ion-view view-title="New 新建">
+  <ion-content class="padding">
+  <div class="list">
+<button class="button button-positive button-block icon-left ion-ios-videocam" ng-click="captureVideo()">Capture a video 拍摄视频</button>
+<video controls="controls" preload="metadata" autoplay="autoplay" webkit-playsinline="webkit-playsinline" class="videoPlayer"><source src="http://player.vimeo.com/external/85569724.sd.mp4?s=43df5df0d733011263687d20a47557e4" type="video/mp4"/></video>
+  <img ng-src="{{urlForClipThumb(clip)}}" ng-click="showClip(clip)" style="height: 150px;"/>
+ <label class="item item-input item-stacked-label padding-top">    
+ <select class="padding-bottom padding-top" style="width: 100%;">
+      <option selected> - Select 选择 - </option>
+      <option>Hungry 饿了</option>
+      <option>Dirty Diaper 尿布脏了</option>
+      <option>Tired 累了</option>
+    </select>
+   </label>
+  <label class="item item-input item-stacked-label padding-top">    
+    <textarea name="comment" id="comment" placeholder="Comment 备注" style="height: 80px;" ng-model="comment">
+	</textarea>
+  </label>  
+
+<label>
+    <span class="assertive" ng-model="message"></span>    
+  </label>
+    <button class="button button-block button-positive icon-left ion-ios-cloud-upload" ng-click="upload()">Upload 上传</button>
+  </div>
+  </ion-content>
+</ion-view>

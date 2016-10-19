@@ -1,0 +1,58 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "com.ionicframework.babydata818187"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.ionicframework.babydata818187"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.ionicframework.babydata818187"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.ionicframework.babydata818187"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.ionicframework.babydata818187"
+        },
+        "cordova-sqlite-storage": {
+            "PACKAGE_NAME": "com.ionicframework.babydata818187"
+        },
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "com.ionicframework.babydata818187"
+        },
+        "cordova-plugin-image-picker": {
+            "PACKAGE_NAME": "com.ionicframework.babydata818187"
+        },
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "com.ionicframework.babydata818187"
+        },
+        "cordova-plugin-media-capture": {
+            "PACKAGE_NAME": "com.ionicframework.babydata818187"
+        },
+        "cordova-plugin-photokandy-video-thumbnail": {
+            "PACKAGE_NAME": "com.ionicframework.babydata818187"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "com.ionicframework.babydata818187"
+        },
+        "cordova-plugin-datepicker": {
+            "PACKAGE_NAME": "com.ionicframework.babydata818187"
+        }
+    },
+    "dependent_plugins": {
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "com.ionicframework.babydata818187"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "com.ionicframework.babydata818187"
+        }
+    }
+}
