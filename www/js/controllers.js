@@ -85,12 +85,12 @@ angular.module('babydata.controllers', ['ngCordova'])
   }  
 
   function showMsg(msg, isError){
-    if (isError){
-      $scope.msgClass = "assertive"
-    }
-    else{
-     $scope.msgClass = "balanced" 
-    }
+    // if (isError){
+    //   $scope.msgClass = "assertive"
+    // }
+    // else{
+    //  $scope.msgClass = "balanced" 
+    // }
     $scope.message=msg;
   }
 
@@ -99,7 +99,8 @@ angular.module('babydata.controllers', ['ngCordova'])
   }
 
   $scope.save = function(email, birthday, invitecode) {      
-    if(email != '' && birthday != '' && invitecode != '' ){     
+    if((typeof email !== "undefined" && typeof birthday !== "undefined" && typeof invitecode !== "undefined" ) 
+      && (email != "" && birthday != "" && invitecode !="")){     
       DataService.saveAccount(email,birthday,invitecode)
           .then(function(response){   
             clearMsg(); 

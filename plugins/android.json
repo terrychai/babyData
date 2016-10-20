@@ -7,10 +7,25 @@
         "files": {}
     },
     "installed_plugins": {
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "com.ionicframework.babydata818187"
+        },
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "com.ionicframework.babydata818187"
+        },
         "cordova-plugin-console": {
             "PACKAGE_NAME": "com.ionicframework.babydata818187"
         },
         "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.ionicframework.babydata818187"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "com.ionicframework.babydata818187"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "com.ionicframework.babydata818187"
+        },
+        "cordova-plugin-media-capture": {
             "PACKAGE_NAME": "com.ionicframework.babydata818187"
         },
         "cordova-plugin-splashscreen": {
@@ -27,32 +42,7 @@
         },
         "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "com.ionicframework.babydata818187"
-        },
-        "cordova-plugin-image-picker": {
-            "PACKAGE_NAME": "com.ionicframework.babydata818187"
-        },
-        "cordova-plugin-camera": {
-            "PACKAGE_NAME": "com.ionicframework.babydata818187"
-        },
-        "cordova-plugin-media-capture": {
-            "PACKAGE_NAME": "com.ionicframework.babydata818187"
-        },
-        "cordova-plugin-photokandy-video-thumbnail": {
-            "PACKAGE_NAME": "com.ionicframework.babydata818187"
-        },
-        "cordova-plugin-file-transfer": {
-            "PACKAGE_NAME": "com.ionicframework.babydata818187"
-        },
-        "cordova-plugin-datepicker": {
-            "PACKAGE_NAME": "com.ionicframework.babydata818187"
         }
     },
-    "dependent_plugins": {
-        "cordova-plugin-compat": {
-            "PACKAGE_NAME": "com.ionicframework.babydata818187"
-        },
-        "cordova-plugin-file": {
-            "PACKAGE_NAME": "com.ionicframework.babydata818187"
-        }
-    }
+    "dependent_plugins": {}
 }

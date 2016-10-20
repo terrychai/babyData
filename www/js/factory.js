@@ -61,12 +61,14 @@ angular.module('babydata.factory', [])
 
     function initDB() {
       $ionicPlatform.ready(function() {
+        console.log("INITDB ");
           if(window.cordova)
           {
-          db = window.sqlitePlugin.openDatabase({name: 'myapp.db', location: 'default'}); //$cordovaSQLite.openDB("myapp.db");
+          db = window.sqlitePlugin.openDatabase({name: 'babydata.db', location: 'default'}); 
+          // db = $cordovaSQLite.openDatabase("babydata.db");
         }else
         {
-          db = window.openDatabase("myapp.db", '1.0', 'babydata DB', -1);
+          db = window.openDatabase("babydata.db", '1.0', 'babydata DB', -1);
         }
         
         var query = "CREATE TABLE IF NOT EXISTS account (email text, birthday text, invitecode text)";   

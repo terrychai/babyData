@@ -14,3 +14,11 @@
     text-shadow: 0px 2px 4px gray; 
     color:#039BE5;
 }
+.large_button {
+  line-height: 30vh !important;    
+  width: 100%
+  }
+  .icon_custom {
+  font-size:30px;
+  padding-right:15px;
+}
