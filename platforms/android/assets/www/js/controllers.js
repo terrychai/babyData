@@ -1,29 +1,64 @@
 angular.module('babydata.controllers', ['ngCordova'])
 
-.controller('NewCtrl', function($scope, $cordovaCapture, VideoService) {
+.controller('NewCtrl', function($scope, $cordovaCapture, $cordovaCamera, VideoService) {
   $scope.clip = '';
+  $scope.videoPath = "";
+  $scope.hasVideo = false;
  
   $scope.captureVideo = function() {
     $cordovaCapture.captureVideo().then(function(videoData) {
-      VideoService.saveVideo(videoData).success(function(data) {
-        $scope.clip = data;
-        $scope.$apply();
-      }).error(function(data) {
-        console.log('ERROR: ' + data);
-      });
-    });
-  }; 
+      $scope.hasVideo = true;
+      $scope.videoPath = videoData[0].fullPath;
 
-  $scope.urlForClipThumb = function(clipUrl) {
-    var name = clipUrl.substr(clipUrl.lastIndexOf('/') + 1);
-    var trueOrigin = cordova.file.dataDirectory + name;
-    var sliced = trueOrigin.slice(0, -4);
-    return sliced + '.png';
+      // VideoService.saveVideo(videoData).success(function(data) {
+      //   $scope.clip = data;
+      //   $scope.$apply();
+      // }).error(function(data) {
+      //   console.log('ERROR: ' + data);
+      // });
+    }, function(err) {
+      // An error occurred. Show a message to the user
+      console.log(err);
+    });
   }
+
+  // Choose Video from Device PhotoLibrary
+  $scope.getLibraryVideo = function(){
+    var options = {
+      quality: 50,
+      destinationType: Camera.DestinationType.FILE_URI,
+      sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+      mediaType:Camera.MediaType.VIDEO
+    };
+
+    $cordovaCamera.getPicture(options).then(function(imageData){
+      // Success! Video data is here
+      $scope.hasVideo = true;
+      $scope.videoPath = imageData;
+    }, function(err) {
+      // An error occurred. Show a message to the user
+      console.log(err);
+    });
+  }
+
+  $scope.upload = function(){
+    $scope.hasVideo = false;
+  }
+
+  $scope.cancelUpload = function(){
+    $scope.hasVideo = false;
+  }
+
+  // $scope.urlForClipThumb = function(clipUrl) {
+  //   var name = clipUrl.substr(clipUrl.lastIndexOf('/') + 1);
+  //   var trueOrigin = cordova.file.dataDirectory + name;
+  //   var sliced = trueOrigin.slice(0, -4);
+  //   return sliced + '.png';
+  // }
    
-  $scope.showClip = function(clip) {
-    console.log('show clip: ' + clip);
-  }
+  // $scope.showClip = function(clip) {
+  //   // console.log('show clip: ' + clip);
+  // }
 })
 
 .controller('RecordsCtrl', function($scope, Records) {
@@ -99,7 +134,8 @@ angular.module('babydata.controllers', ['ngCordova'])
   }
 
   $scope.save = function(email, birthday, invitecode) {      
-    if(typeof email !== "undefined" && typeof birthday !== "undefined" && typeof invitecode !== "undefined" ){     
+    if((typeof email !== "undefined" && typeof birthday !== "undefined" && typeof invitecode !== "undefined" ) 
+      && (email != "" && birthday != "" && invitecode !="")){     
       DataService.saveAccount(email,birthday,invitecode)
           .then(function(response){   
             clearMsg(); 

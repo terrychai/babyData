@@ -8,6 +8,7 @@
       Your Name Here
     </author>
     <allow-navigation href="http://*/*" />
+    <allow-navigation href="https://*/*" />
     <content src="index.html" />
     <access origin="*" />
     <preference name="webviewbounce" value="false" />

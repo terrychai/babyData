@@ -1,8 +1,32 @@
-<ion-view view-title="New 新建">
+<ion-view view-title="Baby Data">
   <ion-content class="padding">
-  <div  class="list">    
-<button class="button button-positive button-block large_button" ng-click="captureVideo()"><i class="icon_custom ion-ios-videocam">&nbsp&nbspCapture 拍摄</i></button>
-<div class="spacer" style="height: 10px;"></div>
-<button class="button button-positive button-outline button-block large_button" ng-click="captureVideo()"><i class="icon_custom ion-ios-film">&nbsp&nbspSelect 挑选</i></button>
+  <div ng-show="!hasVideo" class="list">
+	<button class="button button-positive button-block large_button" ng-click="captureVideo()">
+		<i class="icon_custom ion-ios-videocam">&nbsp&nbspCapture 拍摄</i></button>
+	<div class="spacer" style="height: 10px;"></div>
+	<button class="button button-positive button-outline button-block large_button" ng-click="getLibraryVideo()">
+		<i class="icon_custom ion-ios-film">&nbsp&nbspSelect 挑选</i></button>
+</div>
+<div ng-show="hasVideo" class="list">
+	
+	<label class="item item-input">
+    <span class="input-label">Video Path</span>
+    <input type="text" ng-model="videoPath" ng-trim="true"/>
+	</label>   
+	<label class="item item-input">
+	<span class="input-label">Reason</span>
+	  <div class="buttons">
+	    <button class="button icon-right ion-ios-arrow-down button-clear button-dark" ng-click="openModal()">{{modalData.msg}}</button>
+	  </div>
+	</label>  
+	<label class="item item-input item-stacked-label">    
+	<textarea placeholder="Comment 备注" ng-model="comment" ng-trim="true"></textarea>
+	</label> 
+	<button class="button button-block button-positive ion-ios-cloud-upload icon-left" ng-click="upload()">Upload 上传</i></button>
+	<div class="spacer" style="height: 10px;"></div>
+	<div style="text-align:center" >
+	<a class="button button-clear button-positive" ng-click="cancelUpload()">Cancel 取消</a>
+</div>
+</div>
   </ion-content>
 </ion-view>

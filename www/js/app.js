@@ -70,6 +70,16 @@ angular.module('babydata', ['ionic', 'babydata.controllers', 'babydata.factory',
     }
   })
 
+  .state('tab.modal', {
+    url: '/modal',
+    views: {
+      'tab-modal': {
+        templateUrl: 'templates/modal.html',
+        controller: 'ModalCtrl'
+      }
+    }
+  })
+
   .state('tab.records', {
       url: '/records',
       views: {

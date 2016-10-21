@@ -9,7 +9,7 @@
 var db = null;
 var agreement = false;
 
-angular.module('babydata', ['ionic', 'babydata.controllers', 'babydata.factory', 'babydata.services', 'ngCordova'])
+angular.module('babydata', ['ionic', 'babydata.controllers', 'babydata.factory', 'babydata.services', 'babydata.directives', 'ngCordova'])
 
 .run(function($ionicPlatform, $cordovaSQLite, $rootScope) {  
   $ionicPlatform.ready(function() {
@@ -66,6 +66,16 @@ angular.module('babydata', ['ionic', 'babydata.controllers', 'babydata.factory',
       'tab-new': {
         templateUrl: 'templates/tab-new.html',
         controller: 'NewCtrl'
+      }
+    }
+  })
+
+  .state('tab.modal', {
+    url: '/modal',
+    views: {
+      'tab-modal': {
+        templateUrl: 'templates/modal.html',
+        controller: 'ModalCtrl'
       }
     }
   })

@@ -1,29 +1,92 @@
 angular.module('babydata.controllers', ['ngCordova'])
 
-.controller('NewCtrl', function($scope, $cordovaCapture, VideoService) {
+.controller('ModalCtrl', function($scope) {
+
+  $scope.hideModal = function() {
+    $scope.modalCtrl.hide();
+  };
+  
+  $scope.doSomething = function(item) {
+    $scope.modalData.msg = item;
+    $scope.modalCtrl.hide();
+  };
+  
+})
+
+.controller('NewCtrl', function($scope, $cordovaCapture, $cordovaCamera, $ionicModal, VideoService, videoDirective) {
   $scope.clip = '';
+  $scope.videoPath = "";
+  $scope.hasVideo = false;  
+  $scope.types = ['Hungry 饿了','Dirty Diaper 尿布脏了','Too Hot 太热了','Too Cold 太冷了','Too gassy 肚子有气'];
+
+  $ionicModal.fromTemplateUrl('templates/modal.html', function(modal) {
+    $scope.modalCtrl = modal;
+  }, {
+    scope: $scope,
+    animation: 'slide-in-up',
+    focusFirstInput: true
+  });
+
+  $scope.modalData = {"msg" : 'Hungry 饿了'};
+  
+  $scope.openModal = function() {          
+    $scope.modalCtrl.show();
+  };
  
   $scope.captureVideo = function() {
     $cordovaCapture.captureVideo().then(function(videoData) {
-      VideoService.saveVideo(videoData).success(function(data) {
-        $scope.clip = data;
-        $scope.$apply();
-      }).error(function(data) {
-        console.log('ERROR: ' + data);
-      });
-    });
-  }; 
+      $scope.hasVideo = true;
+      $scope.videoPath = videoData[0].fullPath;
 
-  $scope.urlForClipThumb = function(clipUrl) {
-    var name = clipUrl.substr(clipUrl.lastIndexOf('/') + 1);
-    var trueOrigin = cordova.file.dataDirectory + name;
-    var sliced = trueOrigin.slice(0, -4);
-    return sliced + '.png';
+      // VideoService.saveVideo(videoData).success(function(data) {
+      //   $scope.clip = data;
+      //   $scope.$apply();
+      // }).error(function(data) {
+      //   console.log('ERROR: ' + data);
+      // });
+    }, function(err) {
+      // An error occurred. Show a message to the user
+      console.log(err);
+    });
   }
+
+  // Choose Video from Device PhotoLibrary
+  $scope.getLibraryVideo = function(){
+    var options = {
+      quality: 100,
+      destinationType: Camera.DestinationType.FILE_URI,
+      sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+      mediaType:Camera.MediaType.VIDEO
+    };
+
+    $cordovaCamera.getPicture(options).then(function(imageData){
+      // Success! Video data is here
+      $scope.hasVideo = true;
+      $scope.videoPath = imageData;
+    }, function(err) {
+      // An error occurred. Show a message to the user
+      console.log(err);
+    });
+  }
+
+  $scope.upload = function(){
+    $scope.hasVideo = false;
+  }
+
+  $scope.cancelUpload = function(){
+    $scope.hasVideo = false;
+  }
+
+  // $scope.urlForClipThumb = function(clipUrl) {
+  //   var name = clipUrl.substr(clipUrl.lastIndexOf('/') + 1);
+  //   var trueOrigin = cordova.file.dataDirectory + name;
+  //   var sliced = trueOrigin.slice(0, -4);
+  //   return sliced + '.png';
+  // }
    
-  $scope.showClip = function(clip) {
-    console.log('show clip: ' + clip);
-  }
+  // $scope.showClip = function(clip) {
+  //   // console.log('show clip: ' + clip);
+  // }
 })
 
 .controller('RecordsCtrl', function($scope, Records) {
