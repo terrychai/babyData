@@ -9,7 +9,7 @@
 var db = null;
 var agreement = false;
 
-angular.module('babydata', ['ionic', 'babydata.controllers', 'babydata.factory', 'babydata.services', 'ngCordova'])
+angular.module('babydata', ['ionic','babydata.controllers','babydata.factory','babydata.services','babydata.directives','ngCordova'])
 
 .run(function($ionicPlatform, $cordovaSQLite, $rootScope) {  
   $ionicPlatform.ready(function() {

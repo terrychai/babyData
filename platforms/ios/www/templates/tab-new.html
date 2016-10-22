@@ -7,14 +7,13 @@
 	<button class="button button-positive button-outline button-block large_button" ng-click="getLibraryVideo()">
 		<i class="icon_custom ion-ios-film">&nbsp&nbspSelect 挑选</i></button>
 </div>
-<div ng-show="！hasVideo" class="list">
-	
+<div ng-show="hasVideo" class="list">
+	<cordova-video src="videoPath"></cordova-video>
 	<label class="item item-input">
     <span class="input-label">Video Path</span>
     <input type="text" ng-model="videoPath" ng-trim="true"/>
 	</label>   
-	<label class="item item-input">
-	<span class="input-label">Reason</span>
+	<label class="item item-input">	
 	  <div class="buttons">
 	    <button class="button icon-right ion-ios-arrow-down button-clear button-dark" ng-click="openModal()">{{modalData.msg}}</button>
 	  </div>

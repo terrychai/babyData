@@ -17,8 +17,16 @@
 .large_button {
   line-height: 30vh !important;    
   width: 100%
-  }
-  .icon_custom {
-  font-size:30px;
-  padding-right:15px;
+}
+.medium_button {
+line-height: 17vh !important;    
+width: 100%
+}
+.icon_custom {
+font-size:30px;
+padding-right:15px;
+}
+.icon_medium {
+font-size:20px;
+padding-right:15px;
 }

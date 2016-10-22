@@ -13,7 +13,7 @@ angular.module('babydata.controllers', ['ngCordova'])
   
 })
 
-.controller('NewCtrl', function($scope, $cordovaCapture, $cordovaCamera, $ionicModal, VideoService, videoDirective) {
+.controller('NewCtrl', function($scope, $cordovaCapture, $cordovaCamera, $ionicModal, VideoService) {
   $scope.clip = '';
   $scope.videoPath = "";
   $scope.hasVideo = false;  
@@ -27,12 +27,12 @@ angular.module('babydata.controllers', ['ngCordova'])
     focusFirstInput: true
   });
 
-  $scope.modalData = {"msg" : 'Hungry 饿了'};
-  
+  $scope.modalData = {"msg" : 'Select a reason 选择原因'};
+
   $scope.openModal = function() {          
     $scope.modalCtrl.show();
   };
- 
+
   $scope.captureVideo = function() {
     $cordovaCapture.captureVideo().then(function(videoData) {
       $scope.hasVideo = true;
@@ -59,10 +59,10 @@ angular.module('babydata.controllers', ['ngCordova'])
       mediaType:Camera.MediaType.VIDEO
     };
 
-    $cordovaCamera.getPicture(options).then(function(imageData){
+    $cordovaCamera.getPicture(options).then(function(path){
       // Success! Video data is here
       $scope.hasVideo = true;
-      $scope.videoPath = imageData;
+      $scope.videoPath = path;
     }, function(err) {
       // An error occurred. Show a message to the user
       console.log(err);
