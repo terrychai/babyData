@@ -37,7 +37,8 @@ angular.module('babydata.controllers', ['ngCordova'])
     $cordovaCapture.captureVideo().then(function(videoData) {
       console.log("old vpath: "+$scope.videoPath);
       $scope.hasVideo = true;
-      var path = videoData[0].fullPath;      
+      var path = videoData[0].fullPath;  
+      console.log("file index: "+path.indexOf('file:/') );
       if (path.indexOf('file:/') != 0){
         path = "file:/" + path
       }
