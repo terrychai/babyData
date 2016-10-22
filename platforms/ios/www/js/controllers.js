@@ -33,17 +33,21 @@ angular.module('babydata.controllers', ['ngCordova'])
     $scope.modalCtrl.show();
   };
 
+
+
   $scope.captureVideo = function() {
     $cordovaCapture.captureVideo().then(function(videoData) {
-      console.log("old vpath: "+$scope.videoPath);
-      $scope.hasVideo = true;
-      var path = videoData[0].fullPath;  
-      console.log("file index: "+path.indexOf('file:/') );
-      if (path.indexOf('file:/') != 0){
-        path = "file:/" + path
-      }
-      $scope.videoPath = path;      
-      console.log("new vpath: "+$scope.videoPath);
+      console.log("old vpath: "+ $scope.videoPath);      
+      setPath(videoData[0].fullPath);
+      // var path = videoData[0].fullPath;  
+      // var prefix = "file";
+      // console.log("file prefix: " + path.substring(0,4) );
+      // if (path.substring(0,4) != prefix){
+      //   path = "file:/" + path
+      // }      
+      // $scope.videoPath = path;    
+      // $scope.comment = path;  
+      // console.log("new vpath: "+$scope.videoPath);
 
       // VideoService.saveVideo(videoData).success(function(data) {
       //   $scope.clip = data;
@@ -67,10 +71,8 @@ angular.module('babydata.controllers', ['ngCordova'])
     };
 
     $cordovaCamera.getPicture(options).then(function(path){
-      // Success! Video data is here
-      $scope.hasVideo = true;
-      $scope.videoPath = path;
-      $scope.comment = path;
+      // Success! Video data is here      
+      setPath(path);      
     }, function(err) {
       // An error occurred. Show a message to the user
       console.log(err);
@@ -83,6 +85,17 @@ angular.module('babydata.controllers', ['ngCordova'])
 
   $scope.cancelUpload = function(){
     clearVideo();
+  }
+
+  function setPath(path){
+    var prefix = "file";
+    console.log("path prefix: " + path.substring(0,4) );
+    if (path.substring(0,4) != prefix){
+      path = "file:/" + path
+    }      
+    $scope.videoPath = path;    
+    $scope.comment = path;  
+    $scope.hasVideo = true;
   }
 
   function clearVideo(){    
