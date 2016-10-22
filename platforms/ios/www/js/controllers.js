@@ -17,7 +17,7 @@ angular.module('babydata.controllers', ['ngCordova'])
   $scope.clip = '';
   $scope.videoPath = "";
   $scope.hasVideo = false;  
-  $scope.types = ['Hungry 饿了','Dirty Diaper 尿布脏了','Too Hot 太热了','Too Cold 太冷了','Too gassy 肚子有气'];
+  $scope.types = ['Hungry 饿了','Dirty Diaper 尿布脏了','Too Hot 太热了','Too Cold 太冷了','Too gassy 肚子有气'];  
 
   $ionicModal.fromTemplateUrl('templates/modal.html', function(modal) {
     $scope.modalCtrl = modal;
@@ -35,8 +35,14 @@ angular.module('babydata.controllers', ['ngCordova'])
 
   $scope.captureVideo = function() {
     $cordovaCapture.captureVideo().then(function(videoData) {
+      console.log("old vpath: "+$scope.videoPath);
       $scope.hasVideo = true;
-      $scope.videoPath = videoData[0].fullPath;
+      var path = videoData[0].fullPath;      
+      if (path.indexOf('file:/') != 0){
+        path = "file:/" + path
+      }
+      $scope.videoPath = path;      
+      console.log("new vpath: "+$scope.videoPath);
 
       // VideoService.saveVideo(videoData).success(function(data) {
       //   $scope.clip = data;
@@ -63,6 +69,7 @@ angular.module('babydata.controllers', ['ngCordova'])
       // Success! Video data is here
       $scope.hasVideo = true;
       $scope.videoPath = path;
+      $scope.comment = path;
     }, function(err) {
       // An error occurred. Show a message to the user
       console.log(err);
@@ -70,12 +77,19 @@ angular.module('babydata.controllers', ['ngCordova'])
   }
 
   $scope.upload = function(){
-    $scope.hasVideo = false;
+    $clearVideo();
   }
 
   $scope.cancelUpload = function(){
-    $scope.hasVideo = false;
+    clearVideo();
   }
+
+  function clearVideo(){    
+    $scope.hasVideo = false;
+    $scope.comment = "";
+    $scope.videoPath = "";
+    $scope.modalData = {"msg" : 'Select a reason 选择原因'};
+  }  
 
   // $scope.urlForClipThumb = function(clipUrl) {
   //   var name = clipUrl.substr(clipUrl.lastIndexOf('/') + 1);

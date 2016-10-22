@@ -16,24 +16,20 @@
  specific language governing permissions and limitations
  under the License.
  */
-
 //
-//  AppDelegate.m
-//  BabyData
+//  main.m
+//  Baby Data
 //
 //  Created by ___FULLUSERNAME___ on ___DATE___.
 //  Copyright ___ORGANIZATIONNAME___ ___YEAR___. All rights reserved.
 //
 
-#import "AppDelegate.h"
-#import "MainViewController.h"
+#import <UIKit/UIKit.h>
 
-@implementation AppDelegate
-
-- (BOOL)application:(UIApplication*)application didFinishLaunchingWithOptions:(NSDictionary*)launchOptions
+int main(int argc, char* argv[])
 {
-    self.viewController = [[MainViewController alloc] init];
-    return [super application:application didFinishLaunchingWithOptions:launchOptions];
+    @autoreleasepool {
+        int retVal = UIApplicationMain(argc, argv, nil, @"AppDelegate");
+        return retVal;
+    }
 }
-
-@end

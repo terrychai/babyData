@@ -48,7 +48,7 @@
     <feature name="Keyboard">
         <param name="ios-package" onload="true" value="IonicKeyboard" />
     </feature>
-    <name>BabyData</name>
+    <name>Baby Data</name>
     <description>
         An Ionic Framework and Cordova project.
     </description>
