@@ -53,6 +53,8 @@ angular.module('babydata.factory', [])
   function($cordovaSQLite,$ionicPlatform,$q){
     var db;
     var myAccount;
+    var hasAccount = false;
+    var hasAgree = false;
     return {
       initDB:initDB,
       getAccount: getAccount,
@@ -61,7 +63,7 @@ angular.module('babydata.factory', [])
 
     function initDB() {
       $ionicPlatform.ready(function() {
-        console.log("INITDB ");
+        console.log("INIT DB ");
           if(window.cordova)
           {
           db = window.sqlitePlugin.openDatabase({name: 'babydata.db', location: 'default'}); 
@@ -74,7 +76,7 @@ angular.module('babydata.factory', [])
         var query = "CREATE TABLE IF NOT EXISTS account (email text, birthday text, invitecode text)";   
         
         runQuery(query,[],function(res) {
-          console.log("table created ");
+          console.log("sqlite init");
         }, function (err) {
           console.log(err);
         });

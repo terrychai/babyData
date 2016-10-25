@@ -89,12 +89,14 @@ angular.module('babydata.controllers', ['ngCordova'])
 
   function setPath(path){
     var prefix = "file";
+    var prefix1 = "file://";
     console.log("path prefix: " + path.substring(0,4) );
-    if (path.substring(0,4) != prefix){
-      path = "file:/" + path
-    }      
+    if (path.substring(0,4) != prefix){      
+      path = "file:" + path;
+    }    
+
     $scope.videoPath = path;    
-    $scope.comment = path;  
+    // $scope.comment = path;  
     $scope.hasVideo = true;
   }
 
@@ -142,10 +144,10 @@ angular.module('babydata.controllers', ['ngCordova'])
   };
 })
 
-.controller('AccountCtrl', function($scope, $cordovaSQLite, $location, DataService) {
+.controller('AccountCtrl', function($scope, $cordovaSQLite, $location, $cordovaDevice, DataService) {
   
   initData();
-
+  var uuid = $cordovaDevice.getUUID();
   function initData(){    
     DataService.initDB();
     fetchAccount();
@@ -162,10 +164,11 @@ angular.module('babydata.controllers', ['ngCordova'])
     if(response && response.rows && response.rows.length > 0)
     {
       $scope.email = response.rows.item(0).email;                
-      $scope.birthday = response.rows.item(0).birthday;
-      $scope.invitecode = response.rows.item(0).invitecode;    
+      $scope.birthday = new Date(response.rows.item(0).birthday);
+      $scope.invitecode =  uuid; //response.rows.item(0).invitecode;    
     }
     else {
+      $scope.invitecode =  uuid; 
       showMsg("No account info",true);    
     }
   }

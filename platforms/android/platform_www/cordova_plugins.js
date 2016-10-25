@@ -337,6 +337,7 @@ module.exports.metadata =
     "cordova-plugin-compat": "1.0.0",
     "cordova-plugin-camera": "2.3.0",
     "cordova-plugin-console": "1.0.4",
+    "cordova-plugin-crosswalk-webview": "2.1.0",
     "cordova-plugin-device": "1.1.3",
     "cordova-plugin-file": "4.3.0",
     "cordova-plugin-file-transfer": "1.6.0",
